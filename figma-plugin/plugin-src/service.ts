@@ -46,7 +46,7 @@ const makeComponentName = ({
 const findComponentInNode = (
   node: TargetNode,
   setName?: string,
-  description?: string,
+  description?: string
 ): ExtractedNode | ExtractedNode[] => {
   switch (node.type) {
     case "FRAME": {
@@ -75,7 +75,7 @@ const findComponentInNode = (
         return findComponentInNode(
           child,
           node.name,
-          description || node.description,
+          description || node.description
         );
       });
     }
@@ -118,7 +118,7 @@ function removeAndStoreFills(node: SceneNode): Map<string, readonly Paint[]> {
  */
 function restoreFills(
   node: SceneNode,
-  fillsMap: Map<string, readonly Paint[]>,
+  fillsMap: Map<string, readonly Paint[]>
 ) {
   if (
     node.type === "FRAME" &&
@@ -153,7 +153,7 @@ export function getAssetFramesInFrame(targetFrame: FrameNode): ExtractedNode[] {
 
 function createRegexWithDelimiters(
   startDelimiter: string,
-  endDelimiter: string,
+  endDelimiter: string
 ): RegExp {
   // 특수 문자 이스케이프 처리
   const escapeRegExp = (string: string) =>
@@ -225,7 +225,7 @@ export async function getSvgFromExtractedNodes(nodes: ExtractedNode[]) {
         svg,
         metadatas,
       };
-    }),
+    })
   );
 
   const dataMap = datas.reduce((acc, cur) => {
@@ -248,7 +248,7 @@ export async function getSvgFromExtractedNodes(nodes: ExtractedNode[]) {
 export async function exportFromIconaIconData(
   nodes: ExtractedNode[],
   iconaData: Record<string, IconaIconData>,
-  png: PngOptionPayload,
+  png: PngOptionPayload
 ) {
   const result = iconaData;
 
@@ -283,7 +283,7 @@ export async function exportFromIconaIconData(
           scale: key,
           data: base64String,
         };
-      }),
+      })
     );
 
     // fill 복원

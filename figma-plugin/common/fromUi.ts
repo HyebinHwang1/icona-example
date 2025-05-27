@@ -58,14 +58,14 @@ type EventName = keyof Events;
 
 export const emit = <T extends EventName>(
   name: T,
-  payload: Events[T]["payload"],
+  payload: Events[T]["payload"]
 ) => {
   return e(name, payload);
 };
 
 export const on = <T extends keyof Events>(
   name: T,
-  handler: Events[T]["handler"],
+  handler: Events[T]["handler"]
 ) => {
   return o(name, handler);
 };

@@ -24,11 +24,12 @@ export function listenDeployIcon() {
       const assetFrames = getAssetFramesInFrame(targetFrame);
 
       const iconaData = await exportFromIconaIconData(assetFrames, icons, png);
+      console.log(iconaData);
 
       await createDeployPR(iconaData, fileName);
 
-      emit("DEPLOY_DONE", null);
-      figma.notify("Icons deployed", { timeout: 5000 });
+      // emit("DEPLOY_DONE", null);
+      // figma.notify("Icons deployed", { timeout: 5000 });
     } catch (error) {
       figma.notify("Error while deploying icons", {
         timeout: 5000,

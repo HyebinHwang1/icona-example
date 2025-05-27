@@ -12,6 +12,7 @@
   "scripts": {
     "build": "ultra -r build",
     "clean": "ultra -r clean",
+    "dev": "ultra -r watch",
     "release": "yarn changeset publish",
     "version": "changeset version && yarn install --no-immutable"
   },

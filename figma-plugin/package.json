@@ -12,7 +12,8 @@
     "dev:ui": "yarn vite build --mode dev --watch --emptyOutDir=false",
     "tsc": "yarn tsc:plugin && yarn tsc:ui",
     "tsc:plugin": "tsc --noEmit -p plugin",
-    "tsc:ui": "tsc --noEmit -p ui-src"
+    "tsc:ui": "tsc --noEmit -p ui-src",
+    "watch": "WATCH=true node ./esbuild.plugin.cjs"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.6.1",
@@ -45,7 +46,8 @@
   "packageManager": "yarn@3.5.1",
   "ultra": {
     "concurrent": [
-      "build"
+      "build",
+      "watch"
     ]
   }
 }

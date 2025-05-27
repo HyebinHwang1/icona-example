@@ -22,7 +22,8 @@
   "scripts": {
     "build": "nanobundle build",
     "clean": "nanobundle clean",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "watch": "nanobundle build --watch"
   },
   "dependencies": {
     "@icona/types": "^0.9.2",

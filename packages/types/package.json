@@ -10,6 +10,9 @@
   "files": [
     "src"
   ],
+  "scripts": {
+    "watch": "echo 'Types package - no watch needed'"
+  },
   "devDependencies": {
     "@babel/core": "^7.25.8",
     "@babel/template": "^7.25.7",
