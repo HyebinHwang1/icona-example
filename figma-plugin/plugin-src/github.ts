@@ -7,19 +7,19 @@ const GITHUB_API_VERSION = "2022-11-28";
 export function createGithubClient(
   repoOwner: string,
   repoName: string,
-  accessToken: string,
+  accessToken: string
 ) {
   const ACCESS_TOKEN = accessToken;
   const API_URL = `https://api.github.com/repos/${repoOwner}/${repoName}`;
 
   async function uploadBlob(
     content: string,
-    encoding: "utf-8" | "base64" = "utf-8",
+    encoding: "utf-8" | "base64" = "utf-8"
   ): Promise<{ sha: string; mode: string; type: string }> {
     return fetch(`${API_URL}/git/blobs`, {
       method: "POST",
       headers: {
-        Authorization: `token ${ACCESS_TOKEN}`,
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
         "X-GitHub-Api-Version": GITHUB_API_VERSION,
       },
       body: JSON.stringify({
@@ -90,7 +90,7 @@ export function createGithubClient(
 
   async function createTree(
     body: { path: string; mode: string; type: string; sha: string }[],
-    baseTree: string,
+    baseTree: string
   ): Promise<{
     sha: string;
     tree: { path: string; mode: string; type: string; sha: string }[];
@@ -111,7 +111,7 @@ export function createGithubClient(
   async function createCommit(
     tree: string,
     message: string,
-    parents: string[],
+    parents: string[]
   ): Promise<{ sha: string }> {
     return fetch(`${API_URL}/git/commits`, {
       method: "POST",
@@ -144,7 +144,7 @@ export function createGithubClient(
     head: string,
     base: string,
     title: string,
-    body: string,
+    body: string
   ) {
     return fetch(`${API_URL}/pulls`, {
       method: "POST",
@@ -181,11 +181,11 @@ export function createGithubClient(
           sha: svgActionBlob.sha,
         },
       ],
-      head.object.sha,
+      head.object.sha
     );
 
     const workflowsTree = svgActionTree.tree.find(
-      (tree) => tree.path === "workflows",
+      (tree) => tree.path === "workflows"
     )!;
 
     const newTree = await createTree(
@@ -197,7 +197,7 @@ export function createGithubClient(
           sha: workflowsTree.sha,
         },
       ],
-      head.object.sha,
+      head.object.sha
     );
 
     const commit = await createCommit(newTree.sha, commitTitle, [
@@ -211,7 +211,7 @@ export function createGithubClient(
 
   async function createDeployPR(
     svgs: Record<string, IconaIconData>,
-    iconaFileName?: string,
+    iconaFileName?: string
   ) {
     const baseBranch = "main";
     const newBranch = `icona-update-${new Date().getTime()}`;
@@ -228,7 +228,7 @@ export function createGithubClient(
         mode: "100644",
         type: "blob",
         sha: blob.sha,
-      }),
+      })
     );
 
     const tree = await createTree([treeBody], head.object.sha);
