@@ -3893,6 +3893,7 @@ __metadata:
   resolution: "@icona/monorepo@workspace:."
   dependencies:
     "@changesets/cli": ^2.26.1
+    "@icona/generator": "workspace:^"
     "@typescript-eslint/eslint-plugin": ^5.59.6
     "@typescript-eslint/parser": ^5.59.6
     eslint: ^8.40.0
